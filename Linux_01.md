@@ -1,5 +1,6 @@
 * Linux-Introduction :  Linux i s an OS , an Multi-User, Multitasking operating System and Case Sensitive.
- Following are the Linux Distributions :
+
+ # Following are the Linux Distributions :
  1.RedHat
  2.Centos
  3.Ubuntu
@@ -22,3 +23,5 @@
 
 * What is bin / sbin ?
 * Difference Between bin / sbin ?
+
+We focused on how to setup and use that AWS Account in Mobexterm 
