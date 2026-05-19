@@ -1,296 +1,373 @@
-````md
-# Linux Day 05
 
-## 1. Copy Files and Preserve Permissions
+# Linux Day 05 - Commands with Real-Time Interview Scenarios
+
+This document contains important Linux commands used for file backup, comparison, system monitoring, package management, compression, and network troubleshooting.
+
+---
+
+## 1. `cp -rp` - Copy Files with Permissions
 
 ### Command
 ```bash
 cp -rp filename bkp_filename
+````
+
+### Real-Time Scenario
+
+Before modifying a configuration file, I take a backup using `cp -rp`.
+
+### Example
+
+```bash
+cp -rp httpd.conf httpd.conf_bkp
 ```
 
-### Explanation
-- `cp` → Copy files or folders
-- `-r` → Copy directories recursively
-- `-p` → Preserve file permissions, ownership, and timestamps
+### Interview Answer
 
-### Interview Explanation
-"I use the `cp -rp` command to create backup copies while preserving original permissions and timestamps. It is commonly used during configuration backups and migration activities."
+"In real-time, before changing any important configuration file, I take a backup using `cp -rp`. The `-p` option preserves permissions and timestamps, which is useful during rollback."
 
 ---
 
-## 2. Show Line Numbers in Vim
+## 2. `:set nu` - Show Line Numbers in Vim
 
 ### Command
+
 ```vim
 :set nu
 ```
 
-### Explanation
-Displays line numbers inside the Vim editor.
+### Real-Time Scenario
 
-### Interview Explanation
-"I use `:set nu` in Vim to enable line numbers, which helps during log analysis, script editing, and troubleshooting."
+When editing scripts or configuration files, line numbers help me quickly identify errors.
+
+### Interview Answer
+
+"I use `:set nu` in Vim to enable line numbers. It helps when troubleshooting errors that mention a specific line number."
 
 ---
 
-## 3. Compare Two Files
+## 3. `diff` - Compare Two Files
 
 ### Command
+
 ```bash
 diff filename bkp_filename
 ```
 
-### Explanation
-Shows differences between two files line by line.
+### Real-Time Scenario
 
-### Interview Explanation
-"I use the `diff` command to compare configuration files, scripts, or backups to identify changes between versions."
+After making changes to a file, I compare it with the backup file.
+
+### Example
+
+```bash
+diff httpd.conf httpd.conf_bkp
+```
+
+### Interview Answer
+
+"I use `diff` to compare two files and identify exact changes, especially before and after configuration updates."
 
 ---
 
-## 4. Side-by-Side File Comparison
+## 4. `sdiff` - Side-by-Side File Comparison
 
 ### Command
+
 ```bash
 sdiff filename bkp_filename
 ```
 
-### Explanation
-Displays file differences side by side.
+### Real-Time Scenario
 
-### Interview Explanation
-"I use `sdiff` when I need a more readable side-by-side comparison between files during troubleshooting or validation."
+When I want a side-by-side view of two files, I use `sdiff`.
+
+### Interview Answer
+
+"`sdiff` is useful when comparing large configuration files because it shows both files side by side."
 
 ---
 
-## 5. Check Server Uptime
+## 5. `uptime` - Check Server Uptime
 
 ### Command
+
 ```bash
 uptime
 ```
 
-### Explanation
-Shows:
-- Current server time
-- Server running duration
-- Logged-in users
-- Load average
+### Real-Time Scenario
 
-### Interview Explanation
-"I use the `uptime` command to check server availability, running duration, and system load during health monitoring."
+When troubleshooting a server, I first check how long the server has been running.
+
+### Interview Answer
+
+"I use `uptime` to check server availability and load average. It helps me understand whether the server recently rebooted or is under heavy load."
 
 ---
 
-## 6. Monitor System Performance
+## 6. `top` - Monitor Running Processes
 
 ### Command
+
 ```bash
 top
 ```
 
-### Explanation
-Displays:
-- Running processes
-- CPU usage
-- Memory usage
-- Process IDs
+### Exit
 
-### Quit Command
 ```bash
 q
 ```
 
-or
+### Real-Time Scenario
 
-```bash
-Ctrl + C
-```
+If an application is slow, I use `top` to check CPU and memory usage.
 
-### Interview Explanation
-"I use the `top` command for real-time monitoring of CPU, memory, and running processes to identify performance bottlenecks."
+### Interview Answer
+
+"I use `top` for real-time process monitoring. It helps me identify high CPU or high memory consuming processes."
 
 ---
 
-## 7. Check CPU Information
+## 7. `lscpu` - Check CPU Information
 
 ### Command
+
 ```bash
 lscpu
 ```
 
-### Explanation
-Displays CPU details such as:
-- CPU architecture
-- Number of cores
-- Threads
-- Processor model
+### Real-Time Scenario
 
-### Interview Explanation
-"I use `lscpu` to verify server hardware details like CPU cores and architecture during server validation and troubleshooting."
+Before installing or troubleshooting software, I check CPU details.
+
+### Interview Answer
+
+"`lscpu` gives CPU architecture, cores, sockets, and thread information. I use it during server validation."
 
 ---
 
-## 8. Check Memory Usage
+## 8. `free` - Check Memory Usage
 
 ### Commands
+
 ```bash
 free
 free -m
 free -g
 ```
 
-### Explanation
-- `free` → Memory details
-- `-m` → Shows memory in MB
-- `-g` → Shows memory in GB
+### Real-Time Scenario
 
-### Interview Explanation
-"I use the `free` command to monitor RAM and swap memory utilization for performance analysis."
+When a server is slow, I check memory usage using `free -m` or `free -g`.
+
+### Interview Answer
+
+"I use `free` to check RAM and swap memory. `free -m` shows memory in MB and `free -g` shows memory in GB."
 
 ---
 
-## 9. Remove Installed Package
+## 9. `yum remove` - Remove Package
 
 ### Command
+
 ```bash
 yum remove packagename
 ```
 
 ### Example
+
 ```bash
-yum remove git
+yum remove telnet
 ```
 
-### Explanation
-Removes installed packages from the server.
+### Real-Time Scenario
 
-### Interview Explanation
-"I use `yum remove` to uninstall unnecessary or outdated packages from Linux servers."
+When a package is no longer required, I remove it using `yum remove`.
+
+### Interview Answer
+
+"I use `yum remove` to uninstall unwanted packages from RHEL, CentOS, or Amazon Linux servers."
 
 ---
 
-## 10. Download Files from URL
+## 10. `wget` - Download Files
 
 ### Command
+
 ```bash
 wget <url_link>
 ```
 
 ### Example
+
 ```bash
-wget https://example.com/file.zip
+wget https://example.com/app.zip
 ```
 
-### Explanation
-Downloads files directly from internet or repository links.
+### Real-Time Scenario
 
-### Interview Explanation
-"I use `wget` to download packages, scripts, and application files directly from repositories or URLs."
+During application deployment, I use `wget` to download files directly on the server.
+
+### Interview Answer
+
+"`wget` is used to download files from URLs. In real-time, I use it to download packages, scripts, and deployment files."
 
 ---
 
-## 11. Create Zip File
+## 11. `zip` - Compress Folder
 
 ### Command
+
 ```bash
-zip -r name.zip <folder>
+zip -r name.zip foldername
 ```
 
 ### Example
+
 ```bash
-zip -r backup.zip project_folder
+zip -r logs_backup.zip /var/log
 ```
 
-### Explanation
-- `zip` → Compress files
-- `-r` → Include subdirectories recursively
+### Real-Time Scenario
 
-### Interview Explanation
-"I use the `zip` command to compress application folders, logs, and backup files for storage or transfer."
+Before sharing logs with another team, I compress them using zip.
+
+### Interview Answer
+
+"I use `zip -r` to compress folders recursively, especially for log backups and file transfers."
 
 ---
 
-## 12. Extract Zip File
+## 12. `unzip` - Extract Zip File
 
 ### Command
+
 ```bash
 unzip filename.zip
 ```
 
-### Explanation
-Extracts compressed zip files.
+### Example
 
-### Interview Explanation
-"I use `unzip` to extract deployment packages, configuration backups, and shared project files."
+```bash
+unzip app.zip
+```
+
+### Real-Time Scenario
+
+After downloading application files, I extract them using `unzip`.
+
+### Interview Answer
+
+"I use `unzip` to extract compressed application packages or backup files."
 
 ---
 
-## 13. Create Tar File
+## 13. `tar -cvf` - Create Tar Archive
 
 ### Command
+
 ```bash
-tar -cvf filename.tar <folder>
+tar -cvf filename.tar foldername
 ```
 
 ### Example
+
 ```bash
-tar -cvf backup.tar myfolder
+tar -cvf app_backup.tar /opt/application
 ```
 
-### Explanation
-- `c` → Create archive
-- `v` → Verbose output
-- `f` → File name
+### Real-Time Scenario
 
-### Interview Explanation
-"I use the `tar -cvf` command to create archive backups of directories and application files."
+Before migration or deployment, I create a tar archive of important folders.
+
+### Interview Answer
+
+"`tar -cvf` is used to create archive files. I use it for backups before deployments or migrations."
 
 ---
 
-## 14. Extract Tar File
+## 14. `tar -xvf` - Extract Tar Archive
 
 ### Command
+
 ```bash
 tar -xvf filename.tar
 ```
 
-### Explanation
-- `x` → Extract archive
-- `v` → Verbose mode
-- `f` → File name
+### Example
 
-### Interview Explanation
-"I use `tar -xvf` to extract archived files during deployments, migrations, and backup restoration."
+```bash
+tar -xvf app_backup.tar
+```
+
+### Real-Time Scenario
+
+During restoration or deployment, I extract tar files using `tar -xvf`.
+
+### Interview Answer
+
+"`tar -xvf` extracts tar archive files. I use it when restoring backups or extracting deployment packages."
 
 ---
 
-## 15. Check Port Connectivity Using Telnet
+## 15. `telnet` - Check Port Connectivity
+
+### Install Telnet
+
+```bash
+yum install telnet -y
+```
 
 ### Command
+
 ```bash
 telnet <hostname_or_ip> <port>
 ```
 
 ### Example
+
 ```bash
-telnet google.com 80
+telnet 10.0.1.25 8080
 ```
 
-### Explanation
-Checks whether a server port is reachable or accessible.
+### Real-Time Scenario
 
-### Install Telnet
-```bash
-yum install telnet -y
-```
+If an application cannot connect to another server, I check the port using telnet.
 
-### Interview Explanation
-"I use `telnet` for network troubleshooting to verify whether a specific server port is open and reachable from the system."
+### Interview Answer
+
+"I use `telnet` to verify whether a specific port is reachable. For example, if an application server cannot connect to a database server, I test the DB port using telnet."
 
 ---
 
-# Overall Interview Summary
+# Real-Time Troubleshooting Example
 
-"In Linux administration, I regularly use commands for system monitoring, file management, package handling, compression, and troubleshooting. Commands like `top`, `free`, and `lscpu` help in performance monitoring, while `diff`, `cp`, `tar`, and `zip` are useful for backup and file management. I also use networking tools like `telnet` to verify connectivity and port accessibility."
-````
+## Scenario: Application is running slow
+
+### Steps I Follow
+
+```bash
+uptime
+top
+free -m
+lscpu
+```
+
+### Explanation
+
+First, I check the server uptime and load average using `uptime`. Then I use `top` to identify high CPU or memory processes. After that, I check memory usage with `free -m` and CPU details using `lscpu`.
+
+### Interview Answer
+
+"If an application is slow, I first check the server health using `uptime`, `top`, and `free -m`. These commands help me identify whether the issue is related to CPU, memory, or system load."
+
+---
+
+# Final Interview Summary
+
+"As part of Linux administration, I use commands like `cp -rp`, `diff`, `sdiff`, `top`, `uptime`, `free`, `lscpu`, `yum`, `wget`, `zip`, `tar`, and `telnet` in real-time scenarios. These commands help me with backups, file comparison, system monitoring, package management, file compression, and network troubleshooting."
+
+```
+```
